@@ -1,0 +1,197 @@
+/* src/pages/Home.css */
+
+/* Ensure the parent elements (like body, html, #root) allow full height */
+html, body, #root {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  overflow: hidden; /* Prevent scrollbars on the body */
+}
+
+.fullscreen-carousel-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw; /* Full viewport width */
+  height: 100vh; /* Full viewport height */
+  z-index: 1;
+  overflow: hidden; /* Hide anything that might overflow */
+}
+
+/* Ensure the CCarousel and its inner elements take full height */
+.fullscreen-carousel-container .carousel,
+.fullscreen-carousel-container .carousel-inner,
+.fullscreen-carousel-container .carousel-item {
+  height: 100%;
+}
+
+.carousel-image-cover {
+  /* This is the key for responsive full-screen images */
+  object-fit: cover; /* Cover the container, cropping as needed */
+  object-position: center; /* Center the image within the frame */
+  height: 100%;
+  width: 100vw;
+  min-height: 100vh;
+  margin: 0;
+  padding: 0;
+  display: block;
+  /* Animation base state */
+  opacity: 1;
+  transition: none;
+}
+
+/* Animation for first image: slow fade-in */
+.carousel-anim-fadeIn-slow {
+  animation: fadeInSlow 2.2s cubic-bezier(0.7,0,0.3,1);
+}
+@keyframes fadeInSlow {
+  from {
+    opacity: 0;
+    transform: scale(1.04);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* Animation for second image: slow zoom-in */
+.carousel-anim-zoomIn-slow {
+  animation: zoomInSlow 2.2s cubic-bezier(0.7,0,0.3,1);
+}
+@keyframes zoomInSlow {
+  from {
+    transform: scale(1.05) rotate(-2deg);
+    opacity: 0.65;
+  }
+  to {
+    transform: scale(1) rotate(0);
+    opacity: 1;
+  }
+}
+
+/* Animation for third image: slow rotate-in */
+.carousel-anim-rotateIn-slow {
+  animation: rotateInSlow 2.2s cubic-bezier(0.7,0,0.3,1);
+}
+@keyframes rotateInSlow {
+  from {
+    transform: rotateY(60deg) scale(1.1);
+    opacity: 0.5;
+  }
+  to {
+    transform: rotateY(0deg) scale(1);
+    opacity: 1;
+  }
+}
+
+.custom-carousel-controls {
+  position: absolute;
+  top: 50%;
+  width: 100vw;
+  display: flex;
+  justify-content: space-between;
+  z-index: 2;
+  pointer-events: none;
+}
+.carousel-nav-btn {
+  background: rgba(0,0,0,0.35);
+  color: #fff;
+  border: none;
+  font-size: 2.5rem;
+  padding: 0.3em 0.8em;
+  border-radius: 50%;
+  margin: 0 1vw;
+  cursor: pointer;
+  pointer-events: auto;
+  transition: background 0.3s;
+}
+.carousel-nav-btn:hover {
+  background: rgba(0,0,0,0.7);
+}
+.custom-carousel-indicators {
+  position: absolute;
+  bottom: 3vh;
+  width: 100vw;
+  display: flex;
+  justify-content: center;
+  z-index: 2;
+}
+.custom-carousel-indicators span {
+  display: inline-block;
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.5);
+  border: 1px solid rgba(0,0,0,0.15);
+  margin: 0 6px;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+.custom-carousel-indicators .active {
+  background: #fff;
+}
+
+.carousel-item-next.carousel-item-left .carousel-image-cover,
+.carousel-item-prev.carousel-item-right .carousel-image-cover {
+  transform: scale(1.04) rotateY(12deg);
+  opacity: 0.7;
+}
+.carousel-item.active.carousel-item-left .carousel-image-cover,
+.carousel-item-next.carousel-item-left .carousel-image-cover {
+  animation: slideInRight 1.2s cubic-bezier(0.7,0,0.3,1);
+}
+.carousel-item.active.carousel-item-right .carousel-image-cover,
+.carousel-item-prev.carousel-item-right .carousel-image-cover {
+  animation: slideInLeft 1.2s cubic-bezier(0.7,0,0.3,1);
+}
+
+@keyframes slideInRight {
+  from {
+    transform: translateX(100vw) scale(1.1) skewX(-10deg);
+    opacity: 0.6;
+  }
+  to {
+    transform: translateX(0) scale(1) skewX(0);
+    opacity: 1;
+  }
+}
+
+@keyframes slideInLeft {
+  from {
+    transform: translateX(-100vw) scale(1.1) skewX(10deg);
+    opacity: 0.6;
+  }
+  to {
+    transform: translateX(0) scale(1) skewX(0);
+    opacity: 1;
+  }
+}
+
+/* Improve controls/indicators visibility on various backgrounds */
+.fullscreen-carousel-container .carousel-control-prev-icon,
+.fullscreen-carousel-container .carousel-control-next-icon {
+  background-color: rgba(0, 0, 0, 0.4); /* Semi-transparent background */
+  border-radius: 50%; /* Make them circular */
+  padding: 12px; /* Adjust padding for size */
+  background-size: 60% 60%; /* Control the icon size within the background */
+  transition: background-color 0.3s ease;
+}
+.fullscreen-carousel-container .carousel-control-prev-icon:hover,
+.fullscreen-carousel-container .carousel-control-next-icon:hover {
+    background-color: rgba(0, 0, 0, 0.7);
+}
+
+.fullscreen-carousel-container .carousel-indicators [data-coreui-target] {
+  background-color: rgba(255, 255, 255, 0.5); /* Semi-transparent white */
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  width: 12px;  /* Slightly larger indicators */
+  height: 12px;
+  border-radius: 50%; /* Circular indicators */
+  margin: 0 5px; /* Adjust spacing */
+  transition: background-color 0.3s ease;
+}
+
+.fullscreen-carousel-container .carousel-indicators .active {
+  background-color: #ffffff; /* Solid white for active */
+}

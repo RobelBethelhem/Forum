@@ -1,0 +1,17 @@
+[
+  {
+    "src": "/carousel1.jpg",
+    "alt": "Finance discussion group",
+    "caption": "Connect with experts and enthusiasts"
+  },
+  {
+    "src": "/carousel2.jpg",
+    "alt": "Stock market analysis",
+    "caption": "Share your insights and learn from others"
+  },
+  {
+    "src": "/carousel3.jpg",
+    "alt": "Investment planning",
+    "caption": "Plan your financial future together"
+  }
+]
